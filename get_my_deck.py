@@ -2,14 +2,12 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-import time
-from twilio.rest import Client
 from webdriver_manager.chrome import ChromeDriverManager
+import tkinter
+import time
+from tkinter import messagebox
 from datetime import datetime
 
-account_sid = "from_twilio" ## SIGN UP FOR A FREE TWILIO ACCOUNT AND GET YOUR SID AND AUTH TOKEN 
-auth_token  = "from_twilio" ## AS ABOVE
-client = Client(account_sid, auth_token)
 
 browser_options = Options()
 browser_options.add_argument("--headless=new")
@@ -18,8 +16,6 @@ url = "https://store.steampowered.com/sale/steamdeckrefurbished"
 def start():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=browser_options)
-
-    
     driver.get(url)
     return driver
 
@@ -38,10 +34,14 @@ def runner(driver):
     x = x.split("00")[0]  ## HERE YOU CAN BREAKPOINT AND DETERMINE WHICH PART OF THE TEXT YOU ARE INTERESTED IN (E.G. STRIP FOR 64GB, 256GB ETC
     print(x)
     if "add" in x.lower():
-        message = client.messages.create(
-            to="+44777777777", ## THE NUMBER THE ALERT WILL GO TO
-            from_="+44777777777", ## THE NUMBER PROVIDED BY TWILIO
-            body="In Stock https://store.steampowered.com/sale/steamdeckrefurbished")
+        print("\033[1;32m REFURBISHED STEAMDECK RESTOCKED  \n")
+        
+        # This code is to hide the main tkinter window
+        root = tkinter.Tk()
+        root.withdraw()
+        
+        # Uses TK to display a Message Box
+        messagebox.showinfo("REFURBISHED STEAMDECK RESTOCKED!", "https://store.steampowered.com/sale/steamdeckrefurbished")
         status = 1
     else:
         print(x)
