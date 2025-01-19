@@ -1,4 +1,5 @@
-import tkinter
+import smtplib # email alerts
+import tkinter # popup alerts
 import time
 from selenium.webdriver.common.by import By
 from selenium import webdriver
@@ -34,15 +35,22 @@ def runner(driver):
     x = x.split("00")[0]  ## HERE YOU CAN BREAKPOINT AND DETERMINE WHICH PART OF THE TEXT YOU ARE INTERESTED IN (E.G. STRIP FOR 64GB, 256GB ETC
     print(x)
     if "add" in x.lower():
-        print("\033[1;32m REFURBISHED STEAMDECK RESTOCKED  \n")
+print("\033[1;32m REFURBISHED STEAMDECK RESTOCKED  \n")
         
-        # This code is to hide the main tkinter window
+        # DISPLAY POPUP MESSAGE WHEN YOU CAN USE THE ADD TO CART BUTTON
         root = tkinter.Tk()
         root.withdraw()
-        
-        # Uses TK to display a Message Box
         messagebox.showinfo("REFURBISHED STEAMDECK RESTOCKED!", "https://store.steampowered.com/sale/steamdeckrefurbished")
+        
+        # SMTP EMAIL FOR STOCK ALERTS 
+        s = smtplib.SMTP('smtp.gmail.com', 587)
+        s.starttls()
+        s.login("EMAILADDRESS@gmail.com", "GMAIL APP PASSWORD (not your regular login password)")
+        message = "REFURBISHED STEAMDECK RESTOCKED! https://store.steampowered.com/sale/steamdeckrefurbished"
+        s.sendmail("EMAILADDRESS@gmail.com", "EMAILADDRESS@gmail.com", message)
+        s.quit()
         status = 1
+
     else:
         print(x)
         print(datetime.now())
