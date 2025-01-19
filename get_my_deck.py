@@ -1,10 +1,10 @@
+import tkinter
+import time
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-import tkinter
-import time
 from tkinter import messagebox
 from datetime import datetime
 
@@ -61,7 +61,7 @@ def get_my_deck():
                 status = runner(driver)
                 if status == 1:
                     break
-                time.sleep(20) ## HOW OFTEN TO CHECK THE WEBSITE
+                time.sleep(300) ## CHECK THE URL EVERY 5MIN (300sec)
                 c = c+1
                 refresh(driver)
             else:
