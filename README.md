@@ -1,5 +1,5 @@
 # get_my_deck
-Thanks to https://github.com/maroofc and https://github.com/pravinthan or their original codebase!<br>
+Thanks to https://github.com/maroofc and https://github.com/pravinthan for their original codebase!<br>
 
 *A simple scraper which checks the Steam Deck Refurb page for stock (512gb) since there doesn't seem to be any for refurbs out there and definitely no official way of doing this.
 Other options for webscrapers were paid.*<br>
